@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Comando Estratégico - Juego de Estrategia Militar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./arm.css">
+    <!-- <style>
+    /* Reset y estilos generales */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #1a1f2a;
+        color: #e0e0e0;
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        flex-grow: 1;
+    }
+    /* Navegación */
+    header {
+        background-color: #0d1117;
+        padding: 15px 0;
+        border-bottom: 2px solid #2a4d2a;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+    nav a {
+        background-color: #2a4d2a;
+        color: #e0e0e0;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-weight: 500;
+        border-radius: 4px;
+        border: 1px solid #3a5a3a;
+        transition: all 0.3s ease;
+    }
+    nav a:hover,
+    nav a:focus {
+        background-color: #3a6a3a;
+        transform: translateY(-2px);
+    }
+
+    .video{
+        width: 100%;
+    }
+
+    nav a.active {
+        background-color: #4a7a4a;
+        box-shadow: 0 0 10px rgba(74, 122, 74, 0.7);
+        pointer-events: none;
+    }
+    /* Secciones */
+    section {
+        display: none;
+        padding: 40px 0;
+    }
+    /* Mostrar la sección cuyo id coincide con el hash en la URL */
+    section:target {
+        display: block;
+    }
+    /* Mostrar la sección index si no hay hash */
+    body:not(:target) section#index {
+        display: block;
+    }
+    /* Página de inicio */
+    #index {
+        height: 90vh;
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+            url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8d700960-4f30-4bc2-ae9b-b8c2a80608a0.png') center/cover no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px;
+        border-radius: 8px;
+        margin: 20px auto;
+        max-width: 900px;
+    }
+    .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        color: #c8c8c8;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    .hero-content p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: auto;
+    }
+
+    /* Página de armamento */
+    .section-title {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 40px;
+        color: #c8c8c8;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    .grid-armamento {
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+        gap: 30px;
+    }
+    .card {
+        background-color: #0d1117;
+        border: 1px solid #3a5a3a;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+    .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-bottom: 1px solid #3a5a3a;
+    }
+    .card-content {
+        padding: 20px;
+    }
+    .card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+        color: #c8c8c8;
+    }
+    .card ul {
+        list-style-type: none;
+    }
+    .card li {
+        margin-bottom: 8px;
+        padding-left: 20px;
+        position: relative;
+    }
+    .card li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #4a7a4a;
+    }
+    /* Página de vehículos */
+    .list-vehiculos {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    .card-horizontal {
+        display: flex;
+        background-color: #0d1117;
+        border: 1px solid #3a5a3a;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        flex-wrap: wrap;
+    }
+    .card-horizontal img {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        border-right: 1px solid #3a5a3a;
+        flex-shrink: 0;
+    }
+    .card-horizontal-content {
+        padding: 20px;
+        flex: 1 1 300px;
+    }
+    .card-horizontal h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: #c8c8c8;
+    }
+    .card-horizontal p {
+        margin-bottom: 10px;
+    }
+    /* Footer */
+    footer {
+        background-color: #0d1117;
+        padding: 20px 0;
+        text-align: center;
+        border-top: 2px solid #2a4d2a;
+        margin-top: auto;
+        color: #a0a0a0;
+        font-size: 0.9rem;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero-content h1 {
+            font-size: 2rem;
+        }
+        .hero-content p {
+            font-size: 1rem;
+        }
+        .card-horizontal {
+            flex-direction: column;
+        }
+        .card-horizontal img {
+            width: 100%;
+            height: 200px;
+            border-right: none;
+            border-bottom: 1px solid #3a5a3a;
+        }
+        .grid-armamento {
+            grid-template-columns: 1fr;
+        }
+    }
+</style> -->
+</head>
+
+<body>
+ <!-- <header>
+        <nav>
+            <a href="#index" class="active" id="link-index">Inicio</a>
+            <a href="#armamento" id="link-armamento">Armamento</a>
+            <a href="#vehiculos" id="link-vehiculos">Vehículos</a>
+        </nav>
+    </header>  -->
+
+   <section id="index" class="page">
+    <video class="video" src="fondo.mp4" muted="muted" autoplay="autoplay" loop="loop"></video>
+    <div class="hero-content">
+        <h1>OPERACIÓN: NEXUS FRONTERA</h1>
+        <h2>CONTROL. CONQUISTA. DOMINIO.</h2>
+        <p>Dirige tus unidades de élite en una guerra global por la hegemonía. Despliega tecnología de vanguardia y traza estrategias letales para asegurar la victoria. El futuro del combate es ahora.</p>
+        <a href="#armamento" id="link-armamento">
+        <a href="#armamento"><button>Presiona para empezar</button></a>
+        </a>
+    </div>
+</section>
+
+     <section id="armamento" class="page">
+        <div class="container">
+            <h2 class="section-title">BASE DE DATOS DE ARMAMENTO</h2>
+            <div class="grid-armamento">
+                <div class="card">
+                    <model-viewer src="./img//assault_rifle.glb" alt="Rifle de Asalto " auto-rotate camera-controls
+                        style="width: 100%; height: 200px;">
+                    </model-viewer>
+                    <div class="card-content">
+                        <h3>Rifle de Asalto M4A1</h3>
+                        <ul>
+                            <li><strong>Poder de fuego:</strong> 75</li>
+                            <li><strong>Alcance:</strong> 500 m</li>
+                            <li><strong>Cadencia:</strong> 700 rpm</li>
+                            <li><strong>Precisión:</strong> Alta</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <model-viewer src="./img/granade.glb" alt="Granada" auto-rotate camera-controls
+                        style="width: 100%; height: 200px;">
+                    </model-viewer>
+                    <div class="card-content">
+                        <h3>Granada de Fragmentación M67</h3>
+                        <ul>
+                            <li><strong>Poder de fuego:</strong> 90</li>
+                            <li><strong>Alcance:</strong> 30 m</li>
+                            <li><strong>Radio de explosión:</strong> 15 m</li>
+                            <li><strong>Tipo:</strong> Explosivo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <model-viewer src="./img/bazooka.glb" alt="Lanzamisiles" auto-rotate camera-controls
+                        style="width: 100%; height: 200px;">
+                    </model-viewer>
+                    <div class="card-content">
+                        <h3>Lanzamisiles Javelin</h3>
+                        <ul>
+                            <li><strong>Poder de fuego:</strong> 150</li>
+                            <li><strong>Alcance:</strong> 2500 m</li>
+                            <li><strong>Velocidad:</strong> Mach 1.7</li>
+                            <li><strong>Guía:</strong> Infrarrojos</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <model-viewer src="./img/machine-gun.glb" alt="Ametralladora Pesada" auto-rotate camera-controls
+                        style="width: 100%; height: 200px;">
+                    </model-viewer>
+                    <div class="card-content">
+                        <h3>Ametralladora M240B</h3>
+                        <ul>
+                            <li><strong>Poder de fuego:</strong> 85</li>
+                            <li><strong>Alcance:</strong> 800 m</li>
+                            <li><strong>Cadencia:</strong> 950 rpm</li>
+                            <li><strong>Calibre:</strong> 7.62 mm</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <model-viewer src="./img/sniper+rifle+3d+model.glb" alt="Rifle francotirador" auto-rotate
+                        camera-controls style="width: 100%; height: 200px;">
+                    </model-viewer>
+                    <div class="card-content">
+                        <h3>Fusil de Francotirador M2010</h3>
+                        <ul>
+                            <li><strong>Poder de fuego:</strong> 95</li>
+                            <li><strong>Alcance:</strong> 1200 m</li>
+                            <li><strong>Precisión:</strong> Muy Alta</li>
+                            <li><strong>Calibre:</strong> .300 Winchester</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <model-viewer src="./img/heavy+machine.glb" alt="Lanza granadas" auto-rotate camera-controls
+                        style="width: 100%; height: 200px;">
+                    </model-viewer>
+                    <div class="card-content">
+                        <h3>Lanzagranadas Automático MK47</h3>
+                        <ul>
+                            <li><strong>Poder de fuego:</strong> 80</li>
+                            <li><strong>Alcance:</strong> 400 m</li>
+                            <li><strong>Cadencia:</strong> 225 rpm</li>
+                            <li><strong>Tipo:</strong> Granadas 40mm</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="boton">
+            <button class="select">ANTERIOR</button>
+            <button class="select">SIGUIENTE</button>
+        </div>
+    </section> 
+
+     <section id="vehiculos" class="page">
+        <div class="container">
+            <h2 class="section-title">GALERÍA DE VEHÍCULOS MILITARES</h2>
+            <div class="list-vehiculos">
+                <div class="card-horizontal">
+                    <model-viewer src="./img/tank+3d+model.glb" alt="Lanzamisiles" auto-rotate camera-controls
+                        style="width: 100%; height: 400px;">
+                    </model-viewer>
+                    <div class="card-horizontal-content">
+                        <h3>Tanque M1A2 Abrams</h3>
+                        <p><strong>Rol:</strong> Tanque de combate principal</p>
+                        <p><strong>Armamento:</strong> Cañón de 120mm, ametralladora coaxial 7.62mm</p>
+                        <p><strong>Blindaje:</strong> Compuesto avanzado con protección reactiva</p>
+                        <p><strong>Velocidad:</strong> 67 km/h en carretera</p>
+                        <p>El Abrams es el tanque principal de las fuerzas armadas, diseñado para superioridad en el
+                            campo de batalla con potencia de fuego, movilidad y protección.</p>
+                    </div>
+                </div>
+                <div class="card-horizontal">
+                    <model-viewer src="./img/armored_militar.glb" alt="Lanzamisiles" auto-rotate camera-controls
+                        style="width: 100%; height: 400px;">
+                    </model-viewer>
+                    <div class="card-horizontal-content">
+                        <h3>Vehículo Blindado Stryker</h3>
+                        <p><strong>Rol:</strong> Transporte de tropas</p>
+                        <p><strong>Armamento:</strong> Ametralladora M2 .50 cal o lanzagranadas MK19</p>
+                        <p><strong>Capacidad:</strong> 9 soldados más tripulación</p>
+                        <p><strong>Velocidad:</strong> 100 km/h</p>
+                        <p>Vehículo versátil con ruedas diseñado para rápido despliegue de infantería, proporcionando
+                            movilidad y protección contra amenazas ligeras.</p>
+                    </div>
+                </div>
+                <div class="card-horizontal">
+                    <model-viewer src="./img/military+helicopter+3d+model.glb" alt="Helicóptero" auto-rotate camera-controls
+                        style="width: 100%; height: 400px;">
+                    </model-viewer>
+                    <div class="card-horizontal-content">
+                        <h3>Helicóptero de Ataque AH-64 Apache</h3>
+                        <p><strong>Rol:</strong> Apoyo aéreo cercano</p>
+                        <p><strong>Armamento:</strong> Cañón automático 30mm, misiles Hellfire, cohetes Hydra 70</p>
+                        <p><strong>Tripulación:</strong> 2 (piloto y artillero)</p>
+                        <p><strong>Velocidad:</strong> 482 km/h</p>
+                        <p>El Apache es un helicóptero de ataque diseñado para operar día y noche en condiciones
+                            climáticas adversas, capaz de destruir objetivos blindados.</p>
+                    </div>
+                </div>
+                <div class="card-horizontal">
+                    <model-viewer src="./img/military+drone+3d+model.glb" alt="Drone" auto-rotate camera-controls
+                        style="width: 100%; height: 400px;">
+                    </model-viewer>
+                    <div class="card-horizontal-content">
+                        <h3>Vehículo Aéreo No Tripulado MQ-9 Reaper</h3>
+                        <p><strong>Rol:</strong> Apoyo aéreo de reconocimiento</p>
+                        <p><strong>Armamento:</strong>Misiles teledirigidos</p>
+                        <p><strong>Tripulación:</strong> 0 a bordo, 2 en estación terrestre</p>
+                        <p><strong>Velocidad:</strong> 293 km/h</p>
+                        <p>Se diseñó para misiones de ataque a objetivos, vigilancia, reconocimiento y apoyo aéreo cercano</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+</body>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
+</html>
