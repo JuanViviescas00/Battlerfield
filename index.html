@@ -243,7 +243,6 @@
         <h1>OPERACIÓN: NEXUS FRONTERA</h1>
         <h2>CONTROL. CONQUISTA. DOMINIO.</h2>
         <p>Dirige tus unidades de élite en una guerra global por la hegemonía. Despliega tecnología de vanguardia y traza estrategias letales para asegurar la victoria. El futuro del combate es ahora.</p>
-        <a href="#armamento" id="link-armamento">
         <a href="#armamento"><button>Presiona para empezar</button></a>
         </a>
     </div>
@@ -253,8 +252,8 @@
         <div class="container">
             <h2 class="section-title">BASE DE DATOS DE ARMAMENTO</h2>
             <div class="grid-armamento">
-                <div class="card">
-                    <model-viewer src="./img//assault_rifle.glb" alt="Rifle de Asalto " auto-rotate camera-controls
+                <div class="card" id="arm1">
+                    <model-viewer src="./assault_rifle.glb" alt="Rifle de Asalto " auto-rotate camera-controls
                         style="width: 100%; height: 200px;">
                     </model-viewer>
                     <div class="card-content">
@@ -267,8 +266,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card">
-                    <model-viewer src="./img/granade.glb" alt="Granada" auto-rotate camera-controls
+                <div class="card" id="arm2">
+                    <model-viewer src="./granade.glb" alt="Granada" auto-rotate camera-controls
                         style="width: 100%; height: 200px;">
                     </model-viewer>
                     <div class="card-content">
@@ -282,8 +281,8 @@
                     </div>
                 </div>
 
-                <div class="card">
-                    <model-viewer src="./img/bazooka.glb" alt="Lanzamisiles" auto-rotate camera-controls
+                <div class="card" id="arm3">
+                    <model-viewer src="./bazooka.glb" alt="Lanzamisiles" auto-rotate camera-controls
                         style="width: 100%; height: 200px;">
                     </model-viewer>
                     <div class="card-content">
@@ -296,8 +295,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card">
-                    <model-viewer src="./img/machine-gun.glb" alt="Ametralladora Pesada" auto-rotate camera-controls
+                <div class="card" id="arm4">
+                    <model-viewer src="./machine-gun.glb" alt="Ametralladora Pesada" auto-rotate camera-controls
                         style="width: 100%; height: 200px;">
                     </model-viewer>
                     <div class="card-content">
@@ -310,8 +309,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card">
-                    <model-viewer src="./img/sniper+rifle+3d+model.glb" alt="Rifle francotirador" auto-rotate
+                <div class="card" id="arm5">
+                    <model-viewer src="./sniper+rifle+3d+model.glb" alt="Rifle francotirador" auto-rotate
                         camera-controls style="width: 100%; height: 200px;">
                     </model-viewer>
                     <div class="card-content">
@@ -324,8 +323,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card">
-                    <model-viewer src="./img/heavy+machine.glb" alt="Lanza granadas" auto-rotate camera-controls
+                <div class="card" id="arm6">
+                    <model-viewer src="./heavy+machine.glb" alt="Lanza granadas" auto-rotate camera-controls
                         style="width: 100%; height: 200px;">
                     </model-viewer>
                     <div class="card-content">
@@ -350,8 +349,8 @@
         <div class="container">
             <h2 class="section-title">GALERÍA DE VEHÍCULOS MILITARES</h2>
             <div class="list-vehiculos">
-                <div class="card-horizontal">
-                    <model-viewer src="./img/tank+3d+model.glb" alt="Lanzamisiles" auto-rotate camera-controls
+                <div class="card-horizontal" id="veh1">
+                    <model-viewer src="./tank+3d+model.glb" alt="Lanzamisiles" auto-rotate camera-controls
                         style="width: 100%; height: 400px;">
                     </model-viewer>
                     <div class="card-horizontal-content">
@@ -364,8 +363,8 @@
                             campo de batalla con potencia de fuego, movilidad y protección.</p>
                     </div>
                 </div>
-                <div class="card-horizontal">
-                    <model-viewer src="./img/armored_militar.glb" alt="Lanzamisiles" auto-rotate camera-controls
+                <div class="card-horizontal" id="veh2">
+                    <model-viewer src="./armored_militar.glb" alt="Lanzamisiles" auto-rotate camera-controls
                         style="width: 100%; height: 400px;">
                     </model-viewer>
                     <div class="card-horizontal-content">
@@ -378,8 +377,8 @@
                             movilidad y protección contra amenazas ligeras.</p>
                     </div>
                 </div>
-                <div class="card-horizontal">
-                    <model-viewer src="./img/military+helicopter+3d+model.glb" alt="Helicóptero" auto-rotate camera-controls
+                <div class="card-horizontal" id="veh3">
+                    <model-viewer src="./military+helicopter+3d+model.glb" alt="Helicóptero" auto-rotate camera-controls
                         style="width: 100%; height: 400px;">
                     </model-viewer>
                     <div class="card-horizontal-content">
@@ -392,8 +391,8 @@
                             climáticas adversas, capaz de destruir objetivos blindados.</p>
                     </div>
                 </div>
-                <div class="card-horizontal">
-                    <model-viewer src="./img/military+drone+3d+model.glb" alt="Drone" auto-rotate camera-controls
+                <div class="card-horizontal" id="veh4">
+                    <model-viewer src="./military+drone+3d+model.glb" alt="Drone" auto-rotate camera-controls
                         style="width: 100%; height: 400px;">
                     </model-viewer>
                     <div class="card-horizontal-content">
