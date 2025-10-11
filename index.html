@@ -340,8 +340,8 @@
             </div>
         </div>
         <div class="boton">
-            <button class="select">ANTERIOR</button>
-            <button class="select">SIGUIENTE</button>
+           <a href="#index"><button class="select">ANTERIOR</button></a>
+             <a href="#vehiculos"><button class="select">SIGUIENTE</button></a>
         </div>
     </section> 
 
@@ -410,5 +410,56 @@
     </section> 
 </body>
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+<script>
+let selectedCard = null;
+
+function showSection(targetId) {
+    document.querySelectorAll('.page').forEach(section => {
+        section.style.display = 'none';
+    });
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+        targetSection.style.display = 'block';
+        const cards = targetSection.querySelectorAll('.card, .card-horizontal');
+        cards.forEach(card => card.classList.remove('hidden', 'selected'));
+    }
+    selectedCard = null;
+    window.location.hash = targetId;
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        showSection(targetId);
+    });
+});
+
+document.querySelectorAll('.card, .card-horizontal').forEach(card => {
+    card.addEventListener('click', function() {
+        const section = this.closest('.page');
+        const cardsInSection = section.querySelectorAll('.card, .card-horizontal');
+
+        // Remover selección de todas las cartas
+        cardsInSection.forEach(c => c.classList.remove('selected'));
+
+        // Seleccionar la carta clicada
+        this.classList.add('selected');
+
+        // Actualizar la variable global
+        selectedCard = this.id;
+    });
+});
+
+// Mostrar la sección inicial al cargar la página
+window.addEventListener('load', () => {
+    const hash = window.location.hash.substring(1);
+    if (hash && document.getElementById(hash)) {
+        showSection(hash);
+    } else {
+        showSection('index');
+    }
+});
+</script>
 
 </html>

@@ -1,3 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
 #index button{
     margin: 50px;
     padding: 10px 30px;
@@ -12,16 +19,15 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    overflow: hidden; /* Evita que el contenido se salga */
+    overflow: hidden; 
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0;
 }
 
-#index ~ #armamento, #index ~ #vehiculos {
-    display: none; /* Oculta las otras secciones inicialmente */
-    
+#index:hidden{
+    display: none;
 }
 
 /* El video de fondo */
@@ -44,11 +50,11 @@
     z-index: 1;
     text-align: center;
     color: #fff;
-    font-family: 'Electrolize', sans-serif; /* Fuente futurista (puedes importarla de Google Fonts) */
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); /* Efecto de neón en el texto */
+    font-family: 'Electrolize', sans-serif;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); 
     padding: 20px;
     background: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente */
-    backdrop-filter: blur(5px); /* Efecto de vidrio esmerilado */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque */
     border: 2px solid #00ffff;
     border-radius: 10px;
     margin: 12%;
@@ -350,3 +356,64 @@ background-image: linear-gradient( #1c5800, #5e0202 );
             grid-template-columns: 1fr;
         }
     }
+
+/* Styles for armamento cards */
+#arm1 {
+    border-color: #00ff00;
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
+}
+
+#arm2 {
+    border-color: #00dd00;
+    box-shadow: 0 5px 15px rgba(0, 221, 0, 0.3);
+}
+
+#arm3 {
+    border-color: #00bb00;
+    box-shadow: 0 5px 15px rgba(0, 187, 0, 0.3);
+}
+
+#arm4 {
+    border-color: #009900;
+    box-shadow: 0 5px 15px rgba(0, 153, 0, 0.3);
+}
+
+#arm5 {
+    border-color: #007700;
+    box-shadow: 0 5px 15px rgba(0, 119, 0, 0.3);
+}
+
+#arm6 {
+    border-color: #005500;
+    box-shadow: 0 5px 15px rgba(0, 85, 0, 0.3);
+}
+
+/* Styles for vehicle cards */
+#veh1 {
+    border-color: #0080ff;
+    box-shadow: 0 5px 15px rgba(0, 128, 255, 0.3);
+}
+
+#veh2 {
+    border-color: #0066cc;
+    box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+}
+
+#veh3 {
+    border-color: #004d99;
+    box-shadow: 0 5px 15px rgba(0, 77, 153, 0.3);
+}
+
+#veh4 {
+    border-color: #003366;
+    box-shadow: 0 5px 15px rgba(0, 51, 102, 0.3);
+}
+
+/* Selected card style */
+.selected {
+    border: 3px solid #00ffff;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    transform: scale(1.05);
+    position: relative;
+    z-index: 10;
+}
