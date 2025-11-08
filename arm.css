@@ -19,7 +19,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    overflow: hidden; 
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,72 +40,191 @@
     max-height: 100%;
     width: auto;
     height: 100%;
-    z-index: -1;
-    /* filter: brightness(0.7) blur(1px);  */
+    z-index: 0;
+    filter: brightness(0.9) contrast(1.1);
+    object-fit: cover;
+}
+
+/* Overlay oscuro mejorado */
+#index::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 50, 100, 0.2) 100%);
+    z-index: 0.5;
+    pointer-events: none;
 }
 
 /* Estilo del contenido central */
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     text-align: center;
     color: #fff;
     font-family: 'Electrolize', sans-serif;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); 
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente */
-    backdrop-filter: blur(5px); /* Efecto de desenfoque */
+    padding: 60px 40px;
+    background: rgba(0, 10, 30, 0.6);
+    backdrop-filter: blur(10px);
     border: 2px solid #00ffff;
-    border-radius: 10px;
-    margin: 12%;
+    border-radius: 15px;
+    max-width: 900px;
+    margin: 40px;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.1);
+    animation: heroFadeIn 1.5s ease-out;
 }
 
-/* Estilo del título principal */
+/* Estilo del título principal con efecto glitch */
 .hero-content h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #00ffff; /* Color neón */
-    letter-spacing: 5px; /* Espaciado entre letras */
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #00ffff;
+    letter-spacing: 8px;
     text-transform: uppercase;
-    margin: 0;
+    margin: 0 0 20px 0;
+    position: relative;
+    animation: glitch 0.3s infinite;
+    text-shadow:
+        0 0 20px rgba(0, 255, 255, 0.8),
+        0 0 40px rgba(0, 150, 255, 0.5),
+        -2px 2px 0 rgba(255, 0, 255, 0.5),
+        2px -2px 0 rgba(0, 255, 255, 0.3);
+}
+
+.hero-content h1::before,
+.hero-content h1::after {
+    content: 'OPERACIÓN: NEXUS FRONTERA';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.hero-content h1::before {
+    animation: glitchBefore 0.3s infinite;
+    color: #ff00ff;
+    z-index: -1;
+}
+
+.hero-content h1::after {
+    animation: glitchAfter 0.3s infinite;
+    color: #00ffff;
+    z-index: -2;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitchBefore {
+    0% { clip-path: inset(40% 0 61% 0); transform: translate(0); }
+    20% { clip-path: inset(92% 0 1% 0); transform: translate(-2px, 2px); }
+    40% { clip-path: inset(43% 0 1% 0); transform: translate(-2px, -2px); }
+    60% { clip-path: inset(25% 0 58% 0); transform: translate(2px, 2px); }
+    80% { clip-path: inset(54% 0 7% 0); transform: translate(2px, -2px); }
+    100% { clip-path: inset(58% 0 43% 0); transform: translate(0); }
+}
+
+@keyframes glitchAfter {
+    0% { clip-path: inset(60% 0 40% 0); transform: translate(0); }
+    20% { clip-path: inset(84% 0 16% 0); transform: translate(2px, -2px); }
+    40% { clip-path: inset(89% 0 10% 0); transform: translate(2px, 2px); }
+    60% { clip-path: inset(69% 0 20% 0); transform: translate(-2px, -2px); }
+    80% { clip-path: inset(1% 0 58% 0); transform: translate(-2px, 2px); }
+    100% { clip-path: inset(40% 0 59% 0); transform: translate(0); }
 }
 
 /* Estilo del subtítulo */
 .hero-content h2 {
-    font-size: 1.5rem;
-    font-weight: lighter;
-    color: #b0e0e6;
-    letter-spacing: 3px;
-    margin-top: 10px;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: #00ffff;
+    letter-spacing: 5px;
+    margin: 20px 0;
+    animation: fadeInUp 1.2s ease-out 0.3s both;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
 }
 
 /* Estilo del párrafo */
 .hero-content p {
-    font-size: 1.2rem;
-    max-width: 600px;
-    line-height: 1.6;
-    margin: 20px auto;
+    font-size: 1.1rem;
+    max-width: 700px;
+    line-height: 1.8;
+    margin: 30px auto;
+    color: #e0e0e0;
+    animation: fadeInUp 1.2s ease-out 0.6s both;
 }
 
 /* Estilo del botón */
 .hero-content button {
-    background: linear-gradient(45deg, #00ffff, #00aaff); /* Degradado futurista */
+    background: linear-gradient(45deg, #00ffff, #00aaff);
     border: 2px solid #00ffff;
     color: #000;
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.3rem;
+    font-weight: 900;
     text-transform: uppercase;
-    padding: 15px 30px;
+    padding: 18px 50px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-    border-radius: 5px;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    letter-spacing: 3px;
+    animation: fadeInUp 1.2s ease-out 0.9s both;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+    z-index: -1;
 }
 
 .hero-content button:hover {
-    transform: translateY(-3px); /* Levanta el botón al pasar el mouse */
+    transform: translateY(-5px) scale(1.05);
     background: linear-gradient(45deg, #00aaff, #00ffff);
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.9), inset 0 0 15px rgba(255, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content button:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 #index button:active{
