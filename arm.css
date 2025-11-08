@@ -60,7 +60,9 @@
 
 /* Estilo del contenido central */
 .hero-content {
-    position: relative;
+    display:flex;
+    flex-direction: column;
+    position: absolute;
     z-index: 2;
     text-align: center;
     color: #fff;
@@ -71,9 +73,12 @@
     border: 2px solid #00ffff;
     border-radius: 15px;
     max-width: 900px;
-    margin: 40px;
+    margin: auto;
     box-shadow: 0 0 40px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.1);
     animation: heroFadeIn 1.5s ease-out;
+    top: 50%;
+     left: 50%;
+      transform: translate(-50%, -50%);
 }
 
 /* Estilo del título principal con efecto glitch */
@@ -565,11 +570,16 @@ background-image: linear-gradient( #1c5800, #5e0202 );
     background-color: #0d1117;
     color: #00ffff;
     text-align: center;
+
 }
 
 .loading-content {
     max-width: 600px;
     padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+     transform: translate(-50%, -50%);
 }
 
 .loading-content h1 {
