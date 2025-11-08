@@ -251,8 +251,9 @@
      <section id="armamento" class="page">
         <div class="container">
             <h2 class="section-title">BASE DE DATOS DE ARMAMENTO</h2>
+            <p class="instruction-text">SELECCIONA TU ARMA PRINCIPAL</p>
             <div class="grid-armamento">
-                <div class="card" id="arm1">
+                <div class="card" id="arm1" data-name="Rifle de Asalto M4A1">
                     <model-viewer src="./assault_rifle.glb" alt="Rifle de Asalto " auto-rotate camera-controls
                         style="width: 100%; height: 200px;">
                     </model-viewer>
@@ -266,7 +267,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card" id="arm2">
+                <div class="card" id="arm2" data-name="Granada de Fragmentación M67">
                     <model-viewer src="./granade.glb" alt="Granada" auto-rotate camera-controls
                         style="width: 100%; height: 200px;">
                     </model-viewer>
@@ -281,7 +282,7 @@
                     </div>
                 </div>
 
-                <div class="card" id="arm3">
+                <div class="card" id="arm3" data-name="Lanzamisiles Javelin">
                     <model-viewer src="./bazooka.glb" alt="Lanzamisiles" auto-rotate camera-controls
                         style="width: 100%; height: 200px;">
                     </model-viewer>
@@ -295,7 +296,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card" id="arm4">
+                <div class="card" id="arm4" data-name="Ametralladora M240B">
                     <model-viewer src="./machine-gun.glb" alt="Ametralladora Pesada" auto-rotate camera-controls
                         style="width: 100%; height: 200px;">
                     </model-viewer>
@@ -309,7 +310,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card" id="arm5">
+                <div class="card" id="arm5" data-name="Fusil de Francotirador M2010">
                     <model-viewer src="./sniper+rifle+3d+model.glb" alt="Rifle francotirador" auto-rotate
                         camera-controls style="width: 100%; height: 200px;">
                     </model-viewer>
@@ -323,7 +324,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card" id="arm6">
+                <div class="card" id="arm6" data-name="Lanzagranadas Automático MK47">
                     <model-viewer src="./heavy+machine.glb" alt="Lanza granadas" auto-rotate camera-controls
                         style="width: 100%; height: 200px;">
                     </model-viewer>
@@ -340,16 +341,16 @@
             </div>
         </div>
         <div class="boton">
-           <a href="#index"><button class="select">ANTERIOR</button></a>
-             <a href="#vehiculos"><button class="select">SIGUIENTE</button></a>
+            <button class="select" id="continueWeapon" disabled>CONTINUAR</button>
         </div>
     </section> 
 
      <section id="vehiculos" class="page">
         <div class="container">
             <h2 class="section-title">GALERÍA DE VEHÍCULOS MILITARES</h2>
+            <p class="instruction-text">SELECCIONA TU VEHÍCULO DE COMBATE</p>
             <div class="list-vehiculos">
-                <div class="card-horizontal" id="veh1">
+                <div class="card-horizontal" id="veh1" data-name="Tanque M1A2 Abrams">
                     <model-viewer src="./tank+3d+model.glb" alt="Lanzamisiles" auto-rotate camera-controls
                         style="width: 100%; height: 400px;">
                     </model-viewer>
@@ -363,7 +364,7 @@
                             campo de batalla con potencia de fuego, movilidad y protección.</p>
                     </div>
                 </div>
-                <div class="card-horizontal" id="veh2">
+                <div class="card-horizontal" id="veh2" data-name="Vehículo Blindado Stryker">
                     <model-viewer src="./armored_militar.glb" alt="Lanzamisiles" auto-rotate camera-controls
                         style="width: 100%; height: 400px;">
                     </model-viewer>
@@ -377,7 +378,7 @@
                             movilidad y protección contra amenazas ligeras.</p>
                     </div>
                 </div>
-                <div class="card-horizontal" id="veh3">
+                <div class="card-horizontal" id="veh3" data-name="Helicóptero de Ataque AH-64 Apache">
                     <model-viewer src="./military+helicopter+3d+model.glb" alt="Helicóptero" auto-rotate camera-controls
                         style="width: 100%; height: 400px;">
                     </model-viewer>
@@ -391,7 +392,7 @@
                             climáticas adversas, capaz de destruir objetivos blindados.</p>
                     </div>
                 </div>
-                <div class="card-horizontal" id="veh4">
+                <div class="card-horizontal" id="veh4" data-name="Vehículo Aéreo No Tripulado MQ-9 Reaper">
                     <model-viewer src="./military+drone+3d+model.glb" alt="Drone" auto-rotate camera-controls
                         style="width: 100%; height: 400px;">
                     </model-viewer>
@@ -407,11 +408,31 @@
                 </div>
             </div>
         </div>
+        <div class="boton">
+            <button class="select" id="continueVehicle" disabled>DESPLEGAR</button>
+        </div>
+    </section>
+
+    <section id="loading" class="page">
+        <div class="loading-content">
+            <h1>INICIANDO OPERACIÓN</h1>
+            <div class="loading-bar-container">
+                <div class="loading-bar" id="progressBar"></div>
+            </div>
+            <p class="loading-text" id="loadingText">PREPARANDO EQUIPAMIENTO...</p>
+
+            <div class="loadout-summary">
+                <h3>CONFIGURACIÓN DE COMBATE</h3>
+                <p><strong>ARMA:</strong> <span id="selectedWeaponDisplay">-</span></p>
+                <p><strong>VEHÍCULO:</strong> <span id="selectedVehicleDisplay">-</span></p>
+            </div>
+        </div>
     </section> 
 </body>
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 <script>
-let selectedCard = null;
+let selectedWeapon = null;
+let selectedVehicle = null;
 
 function showSection(targetId) {
     document.querySelectorAll('.page').forEach(section => {
@@ -420,11 +441,8 @@ function showSection(targetId) {
     const targetSection = document.getElementById(targetId);
     if (targetSection) {
         targetSection.style.display = 'block';
-        const cards = targetSection.querySelectorAll('.card, .card-horizontal');
-        cards.forEach(card => card.classList.remove('hidden', 'selected'));
     }
-    selectedCard = null;
-    window.location.hash = targetId;
+    window.history.replaceState(null, null, ' ');
 }
 
 document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -435,30 +453,77 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     });
 });
 
-document.querySelectorAll('.card, .card-horizontal').forEach(card => {
+const weaponCards = document.querySelectorAll('#armamento .card');
+weaponCards.forEach(card => {
     card.addEventListener('click', function() {
-        const section = this.closest('.page');
-        const cardsInSection = section.querySelectorAll('.card, .card-horizontal');
-
-        // Remover selección de todas las cartas
-        cardsInSection.forEach(c => c.classList.remove('selected'));
-
-        // Seleccionar la carta clicada
+        weaponCards.forEach(c => c.classList.remove('selected'));
         this.classList.add('selected');
-
-        // Actualizar la variable global
-        selectedCard = this.id;
+        selectedWeapon = {
+            id: this.id,
+            name: this.getAttribute('data-name')
+        };
+        document.getElementById('continueWeapon').disabled = false;
     });
 });
 
-// Mostrar la sección inicial al cargar la página
-window.addEventListener('load', () => {
-    const hash = window.location.hash.substring(1);
-    if (hash && document.getElementById(hash)) {
-        showSection(hash);
-    } else {
-        showSection('index');
+document.getElementById('continueWeapon').addEventListener('click', function() {
+    if (selectedWeapon) {
+        showSection('vehiculos');
     }
+});
+
+const vehicleCards = document.querySelectorAll('#vehiculos .card-horizontal');
+vehicleCards.forEach(card => {
+    card.addEventListener('click', function() {
+        vehicleCards.forEach(c => c.classList.remove('selected'));
+        this.classList.add('selected');
+        selectedVehicle = {
+            id: this.id,
+            name: this.getAttribute('data-name')
+        };
+        document.getElementById('continueVehicle').disabled = false;
+    });
+});
+
+document.getElementById('continueVehicle').addEventListener('click', function() {
+    if (selectedVehicle) {
+        showSection('loading');
+        startLoadingSequence();
+    }
+});
+
+function startLoadingSequence() {
+    document.getElementById('selectedWeaponDisplay').textContent = selectedWeapon.name;
+    document.getElementById('selectedVehicleDisplay').textContent = selectedVehicle.name;
+
+    const progressBar = document.getElementById('progressBar');
+    const loadingText = document.getElementById('loadingText');
+
+    const loadingSteps = [
+        { progress: 0, text: 'PREPARANDO EQUIPAMIENTO...' },
+        { progress: 20, text: 'CARGANDO ARMAMENTO...' },
+        { progress: 40, text: 'INICIANDO SISTEMAS DE VEHÍCULO...' },
+        { progress: 60, text: 'SINCRONIZANDO COMUNICACIONES...' },
+        { progress: 80, text: 'VERIFICANDO SENSORES...' },
+        { progress: 100, text: 'OPERACIÓN LISTA - DESPLEGANDO...' }
+    ];
+
+    let currentStep = 0;
+
+    const interval = setInterval(() => {
+        if (currentStep < loadingSteps.length) {
+            const step = loadingSteps[currentStep];
+            progressBar.style.width = step.progress + '%';
+            loadingText.textContent = step.text;
+            currentStep++;
+        } else {
+            clearInterval(interval);
+        }
+    }, 800);
+}
+
+window.addEventListener('load', () => {
+    showSection('index');
 });
 </script>
 
